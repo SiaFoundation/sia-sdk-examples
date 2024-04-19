@@ -1,0 +1,9 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "deno.enable": true,
+  "deno.enablePaths": ["renterd-js-deno"]
+}
