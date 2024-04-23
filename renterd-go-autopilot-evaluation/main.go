@@ -31,30 +31,38 @@ func main() {
 
 	// target
 	c.Contracts.Amount = 400
+	fmt.Println("--- Target hosts ---")
+	fmt.Println("Contracts.Amount:", c.Contracts.Amount)
+
+	fmt.Println("--- Before ---")
+	fmt.Println("MaxDownloadPrice:", g.MaxDownloadPrice)
+	e1, _ := a.EvaluateConfig(ctx, c, g, r)
+	printStruct(e1)
 
 	// gouging
-	g.MaxStoragePrice = types.Siacoins(5000)
-	g.MaxRPCPrice = types.Siacoins(1000)
-	g.MinMaxEphemeralAccountBalance = types.Siacoins(1)
+	// g.MaxStoragePrice = types.Siacoins(5000)
+	// g.MaxRPCPrice = types.Siacoins(1000)
+	// g.MinMaxEphemeralAccountBalance = types.Siacoins(1)
 	// g.MinAccountExpiry = 1
 
 	// pruning
-	g.MaxDownloadPrice = types.Siacoins(1000)
+	g.MaxDownloadPrice = types.Siacoins(2000)
 
 	// contract
 	// c.Contracts.Period = 10
 	// c.Contracts.RenewWindow = 10
 
-	e, _ := a.EvaluateConfig(ctx, c, g, r)
+	e2, _ := a.EvaluateConfig(ctx, c, g, r)
 
-	fmt.Println("config:")
-	printStruct(c)
-	fmt.Println("gouging:")
-	printStruct(g)
-	fmt.Println("redundancy:")
-	printStruct(r)
-	fmt.Println("eval:")
-	printStruct(e)
+	// fmt.Println("config:")
+	// printStruct(c)
+	// fmt.Println("gouging:")
+	// printStruct(g)
+	// fmt.Println("redundancy:")
+	// printStruct(r)
+	fmt.Println("--- After ---")
+	fmt.Println("MaxDownloadPrice:", g.MaxDownloadPrice)
+	printStruct(e2)
 }
 
 func encodeJSON(w io.Writer, v any) error {
