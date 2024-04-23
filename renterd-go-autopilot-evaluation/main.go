@@ -30,8 +30,10 @@ func main() {
 	c, _ := a.Config()
 
 	// target
-	c.Contracts.Amount = 400
-	fmt.Println("--- Target hosts ---")
+	fmt.Println("--- Current contracts ---")
+	fmt.Println("Contracts.Amount:", c.Contracts.Amount)
+	c.Contracts.Amount = 301
+	fmt.Println("--- Target contracts ---")
 	fmt.Println("Contracts.Amount:", c.Contracts.Amount)
 
 	fmt.Println("--- Before ---")
@@ -46,7 +48,7 @@ func main() {
 	// g.MinAccountExpiry = 1
 
 	// pruning
-	g.MaxDownloadPrice = types.Siacoins(2000)
+	g.MaxDownloadPrice = types.Siacoins(1030)
 
 	// contract
 	// c.Contracts.Period = 10
@@ -54,12 +56,6 @@ func main() {
 
 	e2, _ := a.EvaluateConfig(ctx, c, g, r)
 
-	// fmt.Println("config:")
-	// printStruct(c)
-	// fmt.Println("gouging:")
-	// printStruct(g)
-	// fmt.Println("redundancy:")
-	// printStruct(r)
 	fmt.Println("--- After ---")
 	fmt.Println("MaxDownloadPrice:", g.MaxDownloadPrice)
 	printStruct(e2)
