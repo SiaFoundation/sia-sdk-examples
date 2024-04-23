@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "@siafoundation/renterd-js": "^0.2.0"
+    "@siafoundation/renterd-js": "^0.2.1",
+    "@siafoundation/units": "^3.0.1"
   },
   "devDependencies": {
     "@types/bun": "^1.1.0"

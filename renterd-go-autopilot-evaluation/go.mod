@@ -6,7 +6,7 @@ require github.com/joho/godotenv v1.5.1
 
 require (
 	github.com/aead/chacha20 v0.0.0-20180709150244-8b13a72661da // indirect
-	github.com/aws/aws-sdk-go v1.50.1 // indirect
+	github.com/aws/aws-sdk-go v1.51.21 // indirect
 	github.com/dchest/threefish v0.0.0-20120919164726-3ecf4c494abf // indirect
 	github.com/gabriel-vasile/mimetype v1.4.3 // indirect
 	github.com/gorilla/websocket v1.5.1 // indirect
@@ -31,20 +31,20 @@ require (
 	gitlab.com/NebulousLabs/ratelimit v0.0.0-20200811080431-99b8f0768b2e // indirect
 	gitlab.com/NebulousLabs/siamux v0.0.2-0.20220630142132-142a1443a259 // indirect
 	gitlab.com/NebulousLabs/threadgroup v0.0.0-20200608151952-38921fbef213 // indirect
-	go.sia.tech/core v0.2.1 // indirect
+	go.sia.tech/core v0.2.2
 	go.sia.tech/coreutils v0.0.3 // indirect
-	go.sia.tech/gofakes3 v0.0.0-20231109151325-e0d47c10dce2 // indirect
+	go.sia.tech/gofakes3 v0.0.2 // indirect
 	go.sia.tech/jape v0.11.2-0.20240124024603-93559895d640 // indirect
 	go.sia.tech/mux v1.2.0 // indirect
-	go.sia.tech/renterd v1.0.6
+	go.sia.tech/renterd v1.0.7-0.20240422115921-5847772b8e9e
 	go.sia.tech/siad v1.5.10-0.20230228235644-3059c0b930ca // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.27.0 // indirect
-	golang.org/x/crypto v0.21.0 // indirect
-	golang.org/x/net v0.21.0 // indirect
-	golang.org/x/sys v0.18.0 // indirect
+	golang.org/x/crypto v0.22.0 // indirect
+	golang.org/x/net v0.24.0 // indirect
+	golang.org/x/sys v0.19.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
-	golang.org/x/tools v0.16.1 // indirect
-	gorm.io/gorm v1.25.7 // indirect
+	golang.org/x/tools v0.20.0 // indirect
+	gorm.io/gorm v1.25.9 // indirect
 	lukechampine.com/frand v1.4.2 // indirect
 )
