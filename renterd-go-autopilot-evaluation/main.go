@@ -10,6 +10,7 @@ import (
 
 	"github.com/joho/godotenv"
 	"go.sia.tech/core/types"
+	"go.sia.tech/renterd/api"
 	"go.sia.tech/renterd/autopilot"
 	"go.sia.tech/renterd/bus"
 )
@@ -19,19 +20,22 @@ func main() {
 
 	ctx := context.Background()
 
-	api := os.Getenv("RENTERD_API")
+	addr := os.Getenv("RENTERD_API")
 	password := os.Getenv("RENTERD_PASSWORD")
 
-	b := bus.NewClient(api+"/bus", password)
-	a := autopilot.NewClient(api+"/autopilot", password)
+	b := bus.NewClient(addr+"/bus", password)
+	a := autopilot.NewClient(addr+"/autopilot", password)
 
+	contracts, _ := b.Contracts(ctx, api.ContractsOpts{
+		ContractSet: "autopilot",
+	})
 	g, _ := b.GougingSettings(ctx)
 	r, _ := b.RedundancySettings(ctx)
 	c, _ := a.Config()
 
 	// target
 	fmt.Println("--- Current contracts ---")
-	fmt.Println("Contracts.Amount:", c.Contracts.Amount)
+	fmt.Println("Contracts:", len(contracts))
 	c.Contracts.Amount = 301
 	fmt.Println("--- Target contracts ---")
 	fmt.Println("Contracts.Amount:", c.Contracts.Amount)
