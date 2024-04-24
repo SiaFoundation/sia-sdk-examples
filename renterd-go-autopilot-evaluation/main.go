@@ -9,7 +9,6 @@ import (
 	"reflect"
 
 	"github.com/joho/godotenv"
-	"go.sia.tech/core/types"
 	"go.sia.tech/renterd/api"
 	"go.sia.tech/renterd/autopilot"
 	"go.sia.tech/renterd/bus"
@@ -36,14 +35,21 @@ func main() {
 	// target
 	fmt.Println("--- Current contracts ---")
 	fmt.Println("Contracts:", len(contracts))
-	c.Contracts.Amount = 301
-	fmt.Println("--- Target contracts ---")
-	fmt.Println("Contracts.Amount:", c.Contracts.Amount)
-
-	fmt.Println("--- Before ---")
-	fmt.Println("MaxDownloadPrice:", g.MaxDownloadPrice)
+	mult := 1.1
+	c.Contracts.Amount = uint64(float64(c.Contracts.Amount) * mult)
 	e1, _ := a.EvaluateConfig(ctx, c, g, r)
+	fmt.Println("--- Target contracts ---")
+	fmt.Println("Mult:", mult)
+	fmt.Println("Contracts.Amount:", c.Contracts.Amount)
 	printStruct(e1)
+
+	mult = 1.5
+	c.Contracts.Amount = uint64(float64(c.Contracts.Amount) * mult)
+	e2, _ := a.EvaluateConfig(ctx, c, g, r)
+	fmt.Println("--- Target contracts ---")
+	fmt.Println("Mult:", mult)
+	fmt.Println("Contracts.Amount:", c.Contracts.Amount)
+	printStruct(e2)
 
 	// gouging
 	// g.MaxStoragePrice = types.Siacoins(5000)
@@ -52,17 +58,16 @@ func main() {
 	// g.MinAccountExpiry = 1
 
 	// pruning
-	g.MaxDownloadPrice = types.Siacoins(1030)
+	// g.MaxDownloadPrice = types.Siacoins(1030)
 
 	// contract
 	// c.Contracts.Period = 10
 	// c.Contracts.RenewWindow = 10
 
-	e2, _ := a.EvaluateConfig(ctx, c, g, r)
-
-	fmt.Println("--- After ---")
-	fmt.Println("MaxDownloadPrice:", g.MaxDownloadPrice)
-	printStruct(e2)
+	// e2, _ := a.EvaluateConfig(ctx, c, g, r)
+	// fmt.Println("--- After ---")
+	// fmt.Println("MaxDownloadPrice:", g.MaxDownloadPrice)
+	// printStruct(e2)
 }
 
 func encodeJSON(w io.Writer, v any) error {
