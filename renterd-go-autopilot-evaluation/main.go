@@ -9,7 +9,6 @@ import (
 	"reflect"
 
 	"github.com/joho/godotenv"
-	"go.sia.tech/renterd/api"
 	"go.sia.tech/renterd/autopilot"
 	"go.sia.tech/renterd/bus"
 )
@@ -25,31 +24,59 @@ func main() {
 	b := bus.NewClient(addr+"/bus", password)
 	a := autopilot.NewClient(addr+"/autopilot", password)
 
-	contracts, _ := b.Contracts(ctx, api.ContractsOpts{
-		ContractSet: "autopilot",
-	})
 	g, _ := b.GougingSettings(ctx)
 	r, _ := b.RedundancySettings(ctx)
 	c, _ := a.Config()
 
-	// target
-	fmt.Println("--- Current contracts ---")
-	fmt.Println("Contracts:", len(contracts))
-	mult := 1.1
-	c.Contracts.Amount = uint64(float64(c.Contracts.Amount) * mult)
-	e1, _ := a.EvaluateConfig(ctx, c, g, r)
-	fmt.Println("--- Target contracts ---")
-	fmt.Println("Mult:", mult)
-	fmt.Println("Contracts.Amount:", c.Contracts.Amount)
-	printStruct(e1)
+	e, _ := a.EvaluateConfig(ctx, c, g, r)
 
-	mult = 1.5
-	c.Contracts.Amount = uint64(float64(c.Contracts.Amount) * mult)
-	e2, _ := a.EvaluateConfig(ctx, c, g, r)
-	fmt.Println("--- Target contracts ---")
-	fmt.Println("Mult:", mult)
-	fmt.Println("Contracts.Amount:", c.Contracts.Amount)
-	printStruct(e2)
+	c.Contracts.Amount = 350
+	e, _ = a.EvaluateConfig(ctx, c, g, r)
+	fmt.Println("Target:", c.Contracts.Amount)
+	fmt.Println("Usable estimate:", e.Usable)
+	if e.Recommendation != nil {
+		e, _ = a.EvaluateConfig(ctx, c, e.Recommendation.GougingSettings, r)
+		fmt.Println("Usable after recs:", e.Usable)
+	} else {
+		fmt.Println("No recommendations")
+	}
+	fmt.Println("")
+
+	c.Contracts.Amount = 300
+	e, _ = a.EvaluateConfig(ctx, c, g, r)
+	fmt.Println("Target:", c.Contracts.Amount)
+	fmt.Println("Usable estimate:", e.Usable)
+	if e.Recommendation != nil {
+		e, _ = a.EvaluateConfig(ctx, c, e.Recommendation.GougingSettings, r)
+		fmt.Println("Usable after recs:", e.Usable)
+	} else {
+		fmt.Println("No recommendations")
+	}
+	fmt.Println("")
+
+	c.Contracts.Amount = 250
+	e, _ = a.EvaluateConfig(ctx, c, g, r)
+	fmt.Println("Target:", c.Contracts.Amount)
+	fmt.Println("Usable estimate:", e.Usable)
+	if e.Recommendation != nil {
+		e, _ = a.EvaluateConfig(ctx, c, e.Recommendation.GougingSettings, r)
+		fmt.Println("Usable after recs:", e.Usable)
+	} else {
+		fmt.Println("No recommendations")
+	}
+	fmt.Println("")
+
+	c.Contracts.Amount = 200
+	e, _ = a.EvaluateConfig(ctx, c, g, r)
+	fmt.Println("Target:", c.Contracts.Amount)
+	fmt.Println("Usable estimate:", e.Usable)
+	if e.Recommendation != nil {
+		e, _ = a.EvaluateConfig(ctx, c, e.Recommendation.GougingSettings, r)
+		fmt.Println("Usable after recs:", e.Usable)
+	} else {
+		fmt.Println("No recommendations")
+	}
+	fmt.Println("")
 
 	// gouging
 	// g.MaxStoragePrice = types.Siacoins(5000)
