@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@siafoundation/sdk": "^0.2.0"
+  }
+}
