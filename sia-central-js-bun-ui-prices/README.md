@@ -1,4 +1,4 @@
-# renterd-js-bun-ui-prices
+# sia-central-js-bun-ui-prices
 
 ## Install
 
