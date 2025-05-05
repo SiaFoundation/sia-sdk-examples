@@ -1,0 +1,21 @@
+{
+  "type": "commonjs",
+  "engines": {
+    "node": "20.19.1"
+  },
+  "engineStrict": true,
+  "dependencies": {
+    "@siafoundation/sdk": "^0.3.4-beta.0",
+    "@siafoundation/types": "^0.10.1-beta.0",
+    "@siafoundation/units": "^3.4.2-beta.0",
+    "@siafoundation/walletd-js": "^0.3.4-beta.0",
+    "@siafoundation/walletd-types": "^0.6.3-beta.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.36",
+    "jest": "^29.7.0"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
