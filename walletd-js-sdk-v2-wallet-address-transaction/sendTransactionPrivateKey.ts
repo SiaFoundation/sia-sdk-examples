@@ -71,7 +71,7 @@ async function sendTransactionPrivateKey({
         ],
       },
     })
-    console.log('Transaction constructed')
+    console.log('Transaction constructed', transaction.id)
     siacoinOutputIds = transaction.siacoinInputs?.map((i) => i.parent.id) || []
 
     // Prepare the transaction input sig hash used for signing.
@@ -89,7 +89,6 @@ async function sendTransactionPrivateKey({
     console.log('Transaction input sig hash prepared')
 
     console.log('Signing transaction...')
-    console.log('Transaction input sig hash:', transaction)
     for (const input of transaction.siacoinInputs ?? []) {
       // Add the signature to the input policy.
       const signatureForKeyPair = sdk.wallet.signHash(
@@ -105,17 +104,17 @@ async function sendTransactionPrivateKey({
 
     // Broadcast the v2 transaction with the basis from construct.
     console.log('Broadcasting transaction...')
-    await walletd.txPoolBroadcast({
+    const { data: broadcasted } = await walletd.txPoolBroadcast({
       data: {
         basis,
         v2transactions: [transaction],
         transactions: [],
       },
     })
-    console.log('Transaction broadcasted')
+    console.log('Transaction broadcasted', broadcasted.v2transactions[0].id)
   } catch (error: any) {
     if (siacoinOutputIds.length > 0) {
-      console.log('Releasing transaction...')
+      console.log('Releasing outputs...')
       await walletd.walletRelease({
         params: {
           id: walletId,
@@ -124,7 +123,7 @@ async function sendTransactionPrivateKey({
           siacoinOutputs: siacoinOutputIds,
         },
       })
-      console.log('Transaction released')
+      console.log('Outputs released')
     }
     console.error(error.response?.data || error)
   }
