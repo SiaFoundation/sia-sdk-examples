@@ -1,5 +1,5 @@
 import { initSDK } from '@siafoundation/sdk'
-import { sampleV2Transaction } from './data.js'
+import { sampleV2Transaction } from './mock.js'
 
 const sdk = await initSDK()
 

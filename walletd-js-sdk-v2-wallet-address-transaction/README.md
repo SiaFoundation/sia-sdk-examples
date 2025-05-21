@@ -6,6 +6,7 @@
 - [`sendTransactionPrivateKey.ts`](./sendTransactionPrivateKey.ts) send a transaction assuming the wallet has a single address / private key.
 - [`sendTransactionSeedPhrase.ts`](./sendTransactionSeedPhrase.ts) send a transaction using a seed phrase to generate any required key pairs.
 - [`signTransaction.ts`](./signTransaction.ts) shows how to sign a transaction using a seed phrase to generate any required key pairs.
+- [`getUnspentOutputs.ts`](./getUnspentOutputs.ts) shows how to get unspent outputs for a wallet or an address.
 
 ## Install
 
