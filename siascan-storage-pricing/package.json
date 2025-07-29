@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@siafoundation/explored-js": "^0.8.2",
+    "@siafoundation/units": "^3.5.2",
+    "bignumber.js": "^9.3.1"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.19"
+  }
+}

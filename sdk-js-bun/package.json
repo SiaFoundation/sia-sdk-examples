@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "@siafoundation/sdk": "^0.2.0"
+    "@siafoundation/sdk": "^0.4.3"
   },
   "devDependencies": {
-    "@types/bun": "^1.1.0"
+    "@types/bun": "^1.2.19"
   }
 }

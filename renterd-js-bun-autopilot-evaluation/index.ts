@@ -4,6 +4,11 @@ import { toHastings } from '@siafoundation/units'
 const api = Bun.env['RENTERD_API']!
 const password = Bun.env['RENTERD_PASSWORD']
 
+if (!api || !password) {
+  console.error('RENTERD_API and RENTERD_PASSWORD must be set')
+  process.exit(1)
+}
+
 const bus = Bus({
   api,
   password,
@@ -15,12 +20,12 @@ const autopilot = Autopilot({
 })
 
 try {
-  const g = await bus.settingGouging()
-  const r = await bus.settingRedundancy()
-  const c = await autopilot.config()
+  const g = await bus.settingsGouging()
+  const r = await bus.settingsUpload()
+  const a = await bus.autopilotConfig()
 
   // target
-  c.data.contracts.amount = 500
+  a.data.contracts.amount = 500
 
   // gouging
   g.data.maxStoragePrice = toHastings(5000).toString()
@@ -37,14 +42,14 @@ try {
 
   const e = await autopilot.configEvaluate({
     data: {
-      autopilotConfig: c.data,
+      autopilotConfig: a.data,
       gougingSettings: g.data,
-      redundancySettings: r.data,
+      redundancySettings: r.data.redundancy,
     },
   })
 
   console.log('config:')
-  console.log(c.data)
+  console.log(a.data)
   console.log('gouging:')
   console.log(g.data)
   console.log('redundancy:')
