@@ -1,6 +1,6 @@
 module github.com/SiaFoundation/gists
 
-go 1.22.1
+go 1.23.0
 
 require github.com/joho/godotenv v1.5.1
 
@@ -31,7 +31,7 @@ require (
 	gitlab.com/NebulousLabs/ratelimit v0.0.0-20200811080431-99b8f0768b2e // indirect
 	gitlab.com/NebulousLabs/siamux v0.0.2-0.20220630142132-142a1443a259 // indirect
 	gitlab.com/NebulousLabs/threadgroup v0.0.0-20200608151952-38921fbef213 // indirect
-	go.sia.tech/core v0.2.2
+	go.sia.tech/core v0.2.2 // indirect
 	go.sia.tech/coreutils v0.0.3 // indirect
 	go.sia.tech/gofakes3 v0.0.2 // indirect
 	go.sia.tech/jape v0.11.2-0.20240124024603-93559895d640 // indirect
@@ -40,11 +40,11 @@ require (
 	go.sia.tech/siad v1.5.10-0.20230228235644-3059c0b930ca // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.27.0 // indirect
-	golang.org/x/crypto v0.22.0 // indirect
-	golang.org/x/net v0.24.0 // indirect
-	golang.org/x/sys v0.19.0 // indirect
-	golang.org/x/text v0.14.0 // indirect
-	golang.org/x/tools v0.20.0 // indirect
+	golang.org/x/crypto v0.35.0 // indirect
+	golang.org/x/net v0.25.0 // indirect
+	golang.org/x/sys v0.30.0 // indirect
+	golang.org/x/text v0.22.0 // indirect
+	golang.org/x/tools v0.21.1-0.20240508182429-e35e4ccd0d2d // indirect
 	gorm.io/gorm v1.25.9 // indirect
 	lukechampine.com/frand v1.4.2 // indirect
 )
