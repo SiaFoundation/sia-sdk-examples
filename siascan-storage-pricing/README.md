@@ -1,4 +1,4 @@
-# sia-central-js-bun-ui-prices
+# siascan-storage-pricing
 
 ## Install
 

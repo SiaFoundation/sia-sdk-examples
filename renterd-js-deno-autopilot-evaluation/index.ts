@@ -15,15 +15,15 @@ const autopilot = Autopilot({
   password,
 })
 
-const c = await autopilot.config()
-const g = await bus.settingGouging()
-const r = await bus.settingRedundancy()
+const c = await bus.autopilotConfig()
+const g = await bus.settingsGouging()
+const r = await bus.settingsUpload()
 
 const e = await autopilot.configEvaluate({
   data: {
     autopilotConfig: c.data,
     gougingSettings: g.data,
-    redundancySettings: r.data,
+    redundancySettings: r.data.redundancy,
   },
 })
 

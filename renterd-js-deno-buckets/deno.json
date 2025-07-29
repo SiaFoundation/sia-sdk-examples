@@ -1,5 +1,5 @@
 {
   "imports": {
-    "@siafoundation/renterd-js": "npm:@siafoundation/renterd-js@^0.2.0"
+    "@siafoundation/renterd-js": "npm:@siafoundation/renterd-js@^0.14.7"
   }
 }

@@ -4,6 +4,11 @@ import fs from 'fs'
 const api = Bun.env['RENTERD_API']!
 const password = Bun.env['RENTERD_PASSWORD']
 
+if (!api || !password) {
+  console.error('RENTERD_API and RENTERD_PASSWORD must be set')
+  process.exit(1)
+}
+
 const worker = Worker({
   api,
   password,
@@ -21,7 +26,7 @@ const responseFile = await worker.objectUpload({
   data: fileBuffer,
   config: {
     onUploadProgress: (progress) => {
-      console.log(progress.loaded / progress.total)
+      console.log(progress.loaded / (progress.total ?? 0))
     },
   },
 })
@@ -42,7 +47,7 @@ const responseJson = await worker.objectUpload({
   data: json,
   config: {
     onUploadProgress: (progress) => {
-      console.log(progress.loaded / progress.total)
+      console.log(progress.loaded / (progress.total ?? 0))
     },
   },
 })
@@ -61,7 +66,7 @@ const responseString = await worker.objectUpload({
   data: str,
   config: {
     onUploadProgress: (progress) => {
-      console.log(progress.loaded / progress.total)
+      console.log(progress.loaded / (progress.total ?? 0))
     },
   },
 })

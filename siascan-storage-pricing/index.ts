@@ -1,19 +1,19 @@
-import { SiaCentral } from '@siafoundation/sia-central-js'
+import { Explored } from '@siafoundation/explored-js'
 import { monthsToBlocks, TBToBytes } from '@siafoundation/units'
 import BigNumber from 'bignumber.js'
 
-const siaCentral = SiaCentral()
+const siascan = Explored({
+  api: 'https://api.siascan.com',
+})
 
-const rates = await siaCentral.exchangeRates({
+const rates = await siascan.exchangeRate({
   params: {
-    currencies: 'sc',
+    currency: 'usd',
   },
 })
 
 const storagePriceTBMonthInUSD = new BigNumber(5)
-const storagePriceTBMonthInSC = storagePriceTBMonthInUSD.div(
-  rates.data.rates.sc.usd
-)
+const storagePriceTBMonthInSC = storagePriceTBMonthInUSD.div(rates.data)
 const storagePriceTBBlockInSC = storagePriceTBMonthInSC.div(monthsToBlocks(1))
 const storagePriceByteBlockInSC = storagePriceTBBlockInSC.div(TBToBytes(1))
 console.log({
